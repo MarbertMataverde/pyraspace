@@ -6,6 +6,9 @@ class LightThemeColors {
   static const Color backgroundColor = Color(0xFFF8FAFC);
 
   /// The primary text color of the light theme.
+  static const Color primaryColor = Color(0xFF1D1E3C);
+
+  /// The primary text color of the light theme.
   static const Color primaryTextColor = Color(0xFF1D1E3C);
 
   /// The secondary text color of the light theme.
@@ -16,6 +19,9 @@ class LightThemeColors {
 class DarkThemeColors {
   /// The background color of the dark theme.
   static const Color backgroundColor = Color(0xFF1D1E3C);
+
+  /// The primary text color of the light theme.
+  static const Color primaryColor = Color(0xFFFFFFFF);
 
   /// The primary text color of the dark theme.
   static const Color primaryTextColor = Color(0xFFFFFFFF);
