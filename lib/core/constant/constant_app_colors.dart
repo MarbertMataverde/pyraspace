@@ -13,6 +13,9 @@ class LightThemeColors {
 
   /// The secondary text color of the light theme.
   static const Color secondaryTextColor = Color(0xFF304964);
+
+  /// The button color
+  static const Color buttonColor = Color(0xFF1D1E3C);
 }
 
 /// This class provides the colors for the dark theme.
@@ -28,4 +31,7 @@ class DarkThemeColors {
 
   /// The secondary text color of the dark theme.
   static const Color secondaryTextColor = Color(0xFFE9E9E9);
+
+  /// The button color
+  static const Color buttonColor = Color(0xFFFFFFFF);
 }
