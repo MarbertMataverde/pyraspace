@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+
 import 'package:pyraspace/core/constant/constant_app_colors.dart';
 import 'package:pyraspace/core/constant/constant_asset_path.dart';
 import 'package:pyraspace/features/home/presentation/provider/theme_provider.dart';
 import 'package:pyraspace/features/home/presentation/screens/desktop/extension/hover_extension.dart';
 import 'package:pyraspace/features/home/presentation/screens/desktop/widgets/animated_navigation_button_widget.dart';
+import 'package:pyraspace/features/home/presentation/screens/desktop/widgets/authentication_button_widget.dart';
 import 'package:pyraspace/features/home/presentation/screens/desktop/widgets/toggle_theme_icon_button_widget.dart';
 
 /// A screen widget representing the desktop version of the application.
@@ -28,8 +30,11 @@ class DesktopScreen extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final bool userPreparedTheme = ref.watch(userPreparedThemeStateProvider);
+    // Retrieve the current user-preferred theme from the provider
+    final bool userPreparedTheme =
+        ref.watch<bool>(userPreparedThemeStateProvider);
 
+    // Create hover state providers for each navigation button
     final homeHoverStateProvider = StateProvider<bool>((ref) => false);
     final findHoverStateProvider = StateProvider<bool>((ref) => false);
     final bookHoverStateProvider = StateProvider<bool>((ref) => false);
@@ -43,16 +48,19 @@ class DesktopScreen extends ConsumerWidget {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
+                // Display the logo based on the user's preferred theme
                 Image.asset(
                   userPreparedTheme
                       ? AssetPath.darkPngLogo
                       : AssetPath.lightPngLogo,
                   height: 40,
-                ).withHover,
+                ).withHover, // Apply hover functionality to the logo
+
                 Padding(
                   padding: const EdgeInsets.only(left: 85),
                   child: Row(
                     children: [
+                      // Navigation buttons with hover functionality
                       AnimatedNavigationButtonWidget(
                         buttonHoverStateProvider: homeHoverStateProvider,
                         text: 'Home',
@@ -76,47 +84,161 @@ class DesktopScreen extends ConsumerWidget {
                     ],
                   ),
                 ),
+
+                // Authentication buttons (Login and Register)
                 Row(
                   children: [
-                    GestureDetector(
+                    AuthenticationButtonWidget(
+                      label: 'Login',
                       onTap: () {},
-                      child: const Text('Login').withHover,
                     ),
                     const SizedBox(
                       width: 15,
                     ),
-                    GestureDetector(
+                    AuthenticationButtonWidget(
+                      isFilled: true,
+                      label: 'Register',
                       onTap: () {},
-                      child: Container(
-                        width: 100,
-                        color: userPreparedTheme
-                            ? LightThemeColors.buttonColor
-                            : DarkThemeColors.buttonColor,
-                        child: Padding(
-                          padding: const EdgeInsets.symmetric(vertical: 8),
-                          child: Center(
-                            child: Text(
-                              'Register',
-                              textAlign: TextAlign.center,
-                              style: TextStyle(
-                                color: userPreparedTheme
-                                    ? DarkThemeColors.primaryTextColor
-                                    : LightThemeColors.primaryTextColor,
-                              ),
-                            ),
-                          ),
-                        ),
-                      ).withHover,
                     ),
                   ],
                 )
               ],
             ),
           ),
-          const Expanded(
-            child: Align(
-              alignment: Alignment.bottomRight,
-              child: ToggleThemeIconButtonWidget(),
+          Expanded(
+            child: Row(
+              children: [
+                Expanded(
+                  child: Center(
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 50),
+                      child: SizedBox(
+                        width: 500,
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Row(
+                              children: [
+                                // Horizontal line for decorative purpose
+                                Container(
+                                  width: 40,
+                                  height: 2,
+                                  decoration: BoxDecoration(
+                                    color: userPreparedTheme
+                                        ? LightThemeColors.secondaryTextColor
+                                        : DarkThemeColors.secondaryTextColor,
+                                    borderRadius: BorderRadius.circular(100),
+                                  ),
+                                ),
+                                const SizedBox(
+                                  width: 10,
+                                ),
+
+                                // Application title
+                                Text(
+                                  'Office Space',
+                                  style: TextStyle(
+                                    fontWeight: FontWeight.w500,
+                                    color: userPreparedTheme
+                                        ? LightThemeColors.secondaryTextColor
+                                        : DarkThemeColors.secondaryTextColor,
+                                  ),
+                                ),
+                              ],
+                            ),
+                            const SizedBox(
+                              height: 20,
+                            ),
+
+                            // Main headline
+                            Text(
+                              'The New',
+                              style: TextStyle(
+                                fontSize: 40,
+                                fontWeight: FontWeight.w600,
+                                color: userPreparedTheme
+                                    ? LightThemeColors.primaryTextColor
+                                    : DarkThemeColors.primaryTextColor,
+                              ),
+                            ),
+                            Text(
+                              'Way To Discover',
+                              style: TextStyle(
+                                height: 0.5,
+                                fontSize: 40,
+                                fontWeight: FontWeight.w600,
+                                color: userPreparedTheme
+                                    ? LightThemeColors.primaryTextColor
+                                    : DarkThemeColors.primaryTextColor,
+                              ),
+                            ),
+                            const SizedBox(
+                              height: 40,
+                            ),
+
+                            // Subtitle
+                            Text(
+                              'Meeting Place, Work Place, Office Space And More.',
+                              style: TextStyle(
+                                fontWeight: FontWeight.w500,
+                                color: userPreparedTheme
+                                    ? LightThemeColors.secondaryTextColor
+                                    : DarkThemeColors.secondaryTextColor,
+                              ),
+                            ),
+                            const SizedBox(
+                              height: 20,
+                            ),
+
+                            // Book Now & About Us button
+                            Row(
+                              children: [
+                                AuthenticationButtonWidget(
+                                  isFilled: true,
+                                  label: 'Book Now',
+                                  onTap: () {},
+                                ),
+                                const SizedBox(
+                                  width: 20,
+                                ),
+                                AuthenticationButtonWidget(
+                                  label: 'About Us',
+                                  onTap: () {},
+                                ),
+                              ],
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+
+                // Buildings image
+                Expanded(
+                  child: Column(
+                    children: [
+                      Flexible(
+                        child: Center(
+                          child: Image.asset(
+                            userPreparedTheme
+                                ? AssetPath.lightBuildings
+                                : AssetPath.darkBuildings,
+                            width: 500,
+                          ),
+                        ),
+                      ),
+
+                      // Theme toggler button
+                      const Align(
+                        alignment: Alignment.bottomRight,
+                        child: ToggleThemeIconButtonWidget(),
+                      ),
+                    ],
+                  ),
+                ),
+              ],
             ),
           ),
         ],
