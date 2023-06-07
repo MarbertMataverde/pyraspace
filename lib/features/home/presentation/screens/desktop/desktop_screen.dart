@@ -7,7 +7,7 @@ import 'package:pyraspace/features/home/presentation/provider/theme_provider.dar
 import 'package:pyraspace/features/home/presentation/screens/desktop/extension/hover_extension.dart';
 import 'package:pyraspace/features/home/presentation/screens/desktop/widgets/animated_navigation_button_widget.dart';
 import 'package:pyraspace/features/home/presentation/screens/desktop/widgets/authentication_button_widget.dart';
-import 'package:pyraspace/features/home/presentation/screens/desktop/widgets/toggle_theme_icon_button_widget.dart';
+import 'package:pyraspace/features/home/presentation/screens/widgets/toggle_theme_icon_button_widget.dart';
 
 /// A screen widget representing the desktop version of the application.
 ///
