@@ -5,7 +5,7 @@ import 'package:pyraspace/core/constant/constant_app_colors.dart';
 import 'package:pyraspace/core/constant/constant_asset_path.dart';
 import 'package:pyraspace/features/home/presentation/provider/theme_provider.dart';
 import 'package:pyraspace/features/home/presentation/screens/desktop/extension/hover_extension.dart';
-import 'package:pyraspace/features/home/presentation/screens/desktop/widgets/animated_navigation_button_widget.dart';
+import 'package:pyraspace/features/home/presentation/screens/desktop/widgets/desktop_animated_navigation_button_widget.dart';
 import 'package:pyraspace/features/home/presentation/screens/desktop/widgets/desktop_authentication_button_widget.dart';
 import 'package:pyraspace/features/home/presentation/screens/widgets/toggle_theme_icon_button_widget.dart';
 
